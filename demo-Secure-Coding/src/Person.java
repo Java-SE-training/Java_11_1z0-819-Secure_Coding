@@ -5,6 +5,8 @@ import lombok.ToString;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
+import java.util.Iterator;
 import java.util.regex.Pattern;
 
 /**
@@ -55,4 +57,15 @@ public class Person {
   public boolean mayDriveACar(){
     return this.age >= 16;
   }
+  Integer getShirtCount(){
+    return shirts.size();
+  }
+  Iterator<String> getShirts(){
+    return shirts.iterator();
+  }
+
+  Collection<String> getShirtCollection(){
+    return Collections.unmodifiableCollection(this.shirts);
+  }
+
 }
