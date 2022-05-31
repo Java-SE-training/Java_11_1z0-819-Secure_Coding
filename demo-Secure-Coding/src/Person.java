@@ -3,6 +3,8 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.io.ObjectStreamException;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -15,7 +17,7 @@ import java.util.regex.Pattern;
  */
 @Setter
 @Getter
-public class Person implements Cloneable{
+public class Person implements Cloneable, Serializable {
  //--------------------------------------------------------------------------------------------
  //To make sure that there is no malicious characters in the name
   //private static final Pattern BLOCKLIST = Pattern.compile("<>\\(\\)\\[\\]\\\\/\\s\\$");
@@ -27,6 +29,8 @@ public class Person implements Cloneable{
   private  int age;
   //Making immutable collection
   private final Collection<String> shirts;
+
+
 
   public Person(String name, int age, Collection<String> shirts) {
     //The constructor is a good place to enforce invariants
@@ -53,6 +57,8 @@ public class Person implements Cloneable{
     //Making "shirts" collection mutable(Can be modified after "Person" instantiation)
     //this.shirts = shirts;
   }
+
+
   public boolean mayDriveACar(){
     return this.age >= 16;
   }
@@ -84,4 +90,8 @@ public class Person implements Cloneable{
       ", shirts=" + shirts +
       '}';
   }
+
+
+
+
 }
