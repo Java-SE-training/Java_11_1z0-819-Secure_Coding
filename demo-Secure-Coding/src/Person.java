@@ -15,8 +15,7 @@ import java.util.regex.Pattern;
  */
 @Setter
 @Getter
-@ToString
-public class Person {
+public class Person implements Cloneable{
  //--------------------------------------------------------------------------------------------
  //To make sure that there is no malicious characters in the name
   //private static final Pattern BLOCKLIST = Pattern.compile("<>\\(\\)\\[\\]\\\\/\\s\\$");
@@ -64,8 +63,25 @@ public class Person {
     return shirts.iterator();
   }
 
-  Collection<String> getShirtCollection(){
+  public Collection<String> getShirtCollection(){
     return Collections.unmodifiableCollection(this.shirts);
   }
 
+  public void addShirt(String shirt){
+    shirts.add(shirt);
+  }
+
+  @Override
+  protected Person clone() throws CloneNotSupportedException {
+    return new Person(name,age,shirts);
+  }
+
+  @Override
+  public String toString() {
+    return "Person{" +
+      "name='" + name + '\'' +
+      ", age=" + age +
+      ", shirts=" + shirts +
+      '}';
+  }
 }
